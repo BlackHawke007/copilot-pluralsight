@@ -15,6 +15,17 @@ class Snake {
         // Create a new head at the current head position plus the direction of movement.
         const head = { x: this.body[0].x + this.dx, y: this.body[0].y + this.dy };
 
+        // Wrap the head position around to the opposite side of the canvas if it goes off the edge.
+        if (head.x < 0) {
+            head.x = 380;
+        } else if (head.x > 380) {
+            head.x = 0;
+        } else if (head.y < 0) {
+            head.y = 380;
+        } else if (head.y > 380) {
+            head.y = 0;
+        }
+
         // Add the new head to the front of the body array.
         this.body.unshift(head);
 

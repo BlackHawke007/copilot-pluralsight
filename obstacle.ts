@@ -1,16 +1,10 @@
-class Food {
-    // The position of the food, represented as coordinates on the canvas.
+class Obstacle {
     position: { x: number, y: number };
-    snake: Snake;
-    obstacles: Obstacle[];
 
-    constructor(_snake: Snake, _obstacles: Obstacle[]) {
-        this.snake = _snake;
-        this.obstacles = _obstacles;
+    constructor(private snake: Snake, private game: Game) {
         this.position = this.randomPosition();
     }
 
-    // The randomPosition function generates a random position for the food.
     randomPosition() {
         let position;
         do {
@@ -22,18 +16,16 @@ class Food {
         return position;
     }
 
-    // The positionOccupied function checks if a position is occupied by the snake.
     positionOccupied(pos: { x: number, y: number }) {
         for (let segment of this.snake.body) {
             if (segment.x === pos.x && segment.y === pos.y) {
                 return true;
             }
-            for (let obstacle of this.obstacles) {
-                if (obstacle.position.x === pos.x && obstacle.position.y === pos.y) {
-                    return true;
-                }
-            }
         }
+        // if (this.game.food.position.x === pos.x && this.game.food.position.y === pos.y) {
+        //     return true;
+        // }
         return false;
     }
 }
+

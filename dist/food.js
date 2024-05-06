@@ -1,7 +1,8 @@
 "use strict";
 var Food = /** @class */ (function () {
-    function Food(_snake) {
+    function Food(_snake, _obstacles) {
         this.snake = _snake;
+        this.obstacles = _obstacles;
         this.position = this.randomPosition();
     }
     // The randomPosition function generates a random position for the food.
@@ -21,6 +22,12 @@ var Food = /** @class */ (function () {
             var segment = _a[_i];
             if (segment.x === pos.x && segment.y === pos.y) {
                 return true;
+            }
+            for (var _b = 0, _c = this.obstacles; _b < _c.length; _b++) {
+                var obstacle = _c[_b];
+                if (obstacle.position.x === pos.x && obstacle.position.y === pos.y) {
+                    return true;
+                }
             }
         }
         return false;
