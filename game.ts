@@ -52,7 +52,7 @@ class Game {
                     this.gameOver();
                 }
             });
-        }, 200);
+        }, 50);
 
         window.addEventListener('keydown', e => {
             this.snake.changeDirection(e.key);
